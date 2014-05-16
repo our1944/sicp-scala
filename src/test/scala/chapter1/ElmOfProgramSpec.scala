@@ -16,4 +16,10 @@ class ElmOfProgramSpec extends FlatSpec {
     }
   }
 
+  "exercise 1.7 betterEnough" should "works better for big & small numbers" in {
+    // for small number, goodEnough ends too early
+    assert(sqrt(0.000001) > betterSqrt(0.000001))
+    // TODO bigger example
+  }
+
 }

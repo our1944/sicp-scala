@@ -23,7 +23,7 @@ object ElmOfProgram {
   def average(x:Double, y:Double) = (x + y) / 2
 
   def goodEnough(guess: Double, x: Double): Boolean = 
-    if ((square(guess) - x) < 0.001)
+    if (math.abs((square(guess) - x)) < 0.001)
       true
     else
       false
@@ -43,5 +43,20 @@ object ElmOfProgram {
     newIf(goodEnough(guess, x), guess, newSqrtIter(improve(guess, x), x))
 
   def newSqrt(x: Double) = newSqrtIter(1.0, x)
+
+  // exercise 1.7
+  def betterEnough(guess: Double, lastGuess: Double, x: Double) =
+    if (math.abs(guess / lastGuess - 1) < 0.001)
+      true
+    else
+      false
+
+  def betterSqrtIter(guess: Double, lastGuess: Double, x: Double): Double =
+    if (betterEnough(guess, lastGuess, x))
+      guess
+    else
+      betterSqrtIter(improve(guess, x), guess, x)
+
+  def betterSqrt(x: Double) = betterSqrtIter(1.0, 1.5, x)
 
 }
