@@ -1,6 +1,6 @@
 package  chapter1
 
-object Main {
+object ElmOfProgram {
 
   def square(x: Double): Double = x * x
 
