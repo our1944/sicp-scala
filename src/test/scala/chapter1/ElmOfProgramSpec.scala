@@ -22,4 +22,8 @@ class ElmOfProgramSpec extends FlatSpec {
     // TODO bigger example
   }
 
+  "exercise 1.8" should "calculate cube root" in {
+    assert(math.abs(cubeRoot(27.0) - 3.0) < 0.0001)
+  }
+
 }

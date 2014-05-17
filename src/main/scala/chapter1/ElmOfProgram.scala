@@ -46,7 +46,7 @@ object ElmOfProgram {
 
   // exercise 1.7
   def betterEnough(guess: Double, lastGuess: Double, x: Double) =
-    if (math.abs(guess / lastGuess - 1) < 0.001)
+    if (math.abs(guess / lastGuess - 1) < 0.00001)
       true
     else
       false
@@ -58,5 +58,16 @@ object ElmOfProgram {
       betterSqrtIter(improve(guess, x), guess, x)
 
   def betterSqrt(x: Double) = betterSqrtIter(1.0, 1.5, x)
+
+  // exercise 1.8
+  def improveCube(guess: Double, x: Double): Double = ((x / square(guess)) + 2.0 * guess) / 3.0
+
+  def cubeRootIter(guess: Double, lastGuess: Double, x: Double): Double = 
+    if (betterEnough(guess, lastGuess, x))
+      guess
+    else
+      cubeRootIter(improveCube(guess, x), guess, x)
+
+  def cubeRoot(x: Double): Double = cubeRootIter(3.0, 1.5, x)
 
 }
