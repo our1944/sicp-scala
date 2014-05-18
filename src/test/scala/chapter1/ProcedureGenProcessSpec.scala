@@ -18,4 +18,14 @@ class ProcedureGenProcessSpec extends FlatSpec {
   "ackermann(3, 3)" should "compute 2^16" in {
     assert(ackermann(3, 3) == math.pow(2, 16))
   }
+
+  // exercise 1.11
+  "recurf and iterf" should "compute same value for 10" in {
+    assert(recurf(10) == iterf(10))
+  }
+
+  // exercise 1.12
+  "pascalTriVal" should "compute 6 for row 4 col 2 " in {
+    assert(pascalTriVal(4, 2) == 6)
+  }
 }
