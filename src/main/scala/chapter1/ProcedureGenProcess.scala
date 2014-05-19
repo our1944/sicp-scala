@@ -48,5 +48,13 @@ object ProcedureGenProcess {
     else if (y % 2 == 0) square(fastExpt(x, y / 2))
     else x * fastExpt(x, y - 1)
 
-  def succExpt(x: Int, y: Int): Int = ???
+  def succExptIter(b: Int, n: Int, a: Int): Int =
+    if (n == 0 && a == 1)
+      1
+    else if (n==0)
+      a * b * b
+    else if (n % 2 == 0) succExptIter(b, n/2, a * square(b))
+    else succExptIter(b, n - 1, a * b)
+
+  def succExpt(x: Int, y: Int): Int = succExptIter(x, y, 1)
 }
