@@ -2,10 +2,10 @@ package  chapter1
 
 object ElmOfProgram {
 
-  def square(x: Double): Double = x * x
+  def square(x: Double) = x * x
 
   // exercise 1.3
-  def sumSquareGreaterTwo(x: Int, y: Int, z:Int): Double = 
+  def sumSquareGreaterTwo(x: Int, y: Int, z:Int): Double =
     if (x <= y && x <= z)
       square(y) + square(z)
     else if (y <= x && y <= z)
@@ -14,7 +14,7 @@ object ElmOfProgram {
       square(y) + square(x)
 
   // exercsie 1.6
-  def newIf(pre: Boolean, then: Double, other: Double): Double = 
+  def newIf(pre: Boolean, then: Double, other: Double): Double =
     if (pre)
       then
     else
@@ -22,7 +22,7 @@ object ElmOfProgram {
 
   def average(x:Double, y:Double) = (x + y) / 2
 
-  def goodEnough(guess: Double, x: Double): Boolean = 
+  def goodEnough(guess: Double, x: Double): Boolean =
     if (math.abs((square(guess) - x)) < 0.001)
       true
     else
@@ -30,7 +30,7 @@ object ElmOfProgram {
 
   def improve(guess: Double, x:Double) = average(guess, x / guess)
 
-  def sqrtIter(guess: Double, x:Double): Double = 
+  def sqrtIter(guess: Double, x:Double): Double =
     if (goodEnough(guess, x))
       guess
     else
@@ -62,7 +62,7 @@ object ElmOfProgram {
   // exercise 1.8
   def improveCube(guess: Double, x: Double): Double = ((x / square(guess)) + 2.0 * guess) / 3.0
 
-  def cubeRootIter(guess: Double, lastGuess: Double, x: Double): Double = 
+  def cubeRootIter(guess: Double, lastGuess: Double, x: Double): Double =
     if (betterEnough(guess, lastGuess, x))
       guess
     else

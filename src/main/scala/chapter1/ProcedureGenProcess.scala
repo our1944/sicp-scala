@@ -1,9 +1,10 @@
 package chapter1
 
+
 object ProcedureGenProcess {
 
   // exercise 1.10
-  def ackermann(x: Int, y: Int): Int = 
+  def ackermann(x: Int, y: Int): Int =
     if (y == 0)
       0
     else if (x == 0)
@@ -14,13 +15,13 @@ object ProcedureGenProcess {
       ackermann((x - 1), ackermann(x, (y - 1)))
 
   // exercise 1.11
-  def recurf(x: Int): Int = 
+  def recurf(x: Int): Int =
     if (x < 3)
       x
     else
       recurf(x -1) + 2 * recurf(x - 2) + 3 * recurf(x - 3)
 
-  def iterfIter(x: Int, y: Int, z: Int, count: Int): Int = 
+  def iterfIter(x: Int, y: Int, z: Int, count: Int): Int =
     if (count == 0)
       y
     else
@@ -39,5 +40,13 @@ object ProcedureGenProcess {
     else
       pascalTriVal(row -1, col) + pascalTriVal(row - 1, col -1)
 
+  // exercise 1.16
+  def square(x: Int) = x * x
 
+  def fastExpt(x: Int, y: Int): Int =
+    if (y == 0) 1
+    else if (y % 2 == 0) square(fastExpt(x, y / 2))
+    else x * fastExpt(x, y - 1)
+
+  def succExpt(x: Int, y: Int): Int = ???
 }

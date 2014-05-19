@@ -28,4 +28,10 @@ class ProcedureGenProcessSpec extends FlatSpec {
   "pascalTriVal" should "compute 6 for row 4 col 2 " in {
     assert(pascalTriVal(4, 2) == 6)
   }
+
+  // exercise 1.16
+  "fastExpt(2, 10) succExpt(2, 10)" should "compute 1024" in {
+    assert(fastExpt(2, 10) == 1024)
+    //assert(succExpt(2, 10) == 1024)
+  }
 }
