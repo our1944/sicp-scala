@@ -32,6 +32,11 @@ class ProcedureGenProcessSpec extends FlatSpec {
   // exercise 1.16
   "fastExpt(2, 10) succExpt(2, 10)" should "compute 1024" in {
     assert(fastExpt(2, 10) == 1024)
-    assert(succExpt(2, 11) == 2048)
+    assert(succExpt(2, 10) == 1024)
+  }
+
+  // exercise 1.17
+  "fastMulti(2, 5)" should "compute 10" in {
+    assert(fastMulti(2, 5) == 10)
   }
 }

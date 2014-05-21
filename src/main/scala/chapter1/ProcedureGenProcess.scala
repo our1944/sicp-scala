@@ -49,12 +49,16 @@ object ProcedureGenProcess {
     else x * fastExpt(x, y - 1)
 
   def succExptIter(b: Int, n: Int, a: Int): Int =
-    if (n == 0 && a == 1)
-      1
-    else if (n==0)
-      a * b * b
-    else if (n % 2 == 0) succExptIter(b, n/2, a * square(b))
+    if (n==0)
+      a
+    else if (n % 2 == 0) succExptIter(square(b), n/2, a)
     else succExptIter(b, n - 1, a * b)
 
   def succExpt(x: Int, y: Int): Int = succExptIter(x, y, 1)
+
+  def fastMulti(x: Int, y: Int): Int =
+    if (y == 0) 0
+    else if (y == 1) x
+    else if (y % 2 == 0) 2 * fastMulti(x, y / 2)
+    else x + fastMulti(x, y - 1)
 }
