@@ -61,4 +61,15 @@ object ProcedureGenProcess {
     else if (y == 1) x
     else if (y % 2 == 0) 2 * fastMulti(x, y / 2)
     else x + fastMulti(x, y - 1)
+
+  // exercise 1.18
+  def russianPeasant(x: Int, y: Int): Int = 
+    if (x == 0 || y == 0) 0
+    else if (x < 0) russianPeasantIter(-x, -y, 0)
+    else russianPeasantIter(x, y, 0)
+
+  def russianPeasantIter(x: Int, y: Int, z:Int): Int = 
+    if (x == 0) z
+    else if (x % 2 == 0) russianPeasantIter(x / 2, y * 2, z)
+    else russianPeasantIter((x - 1) / 2, y * 2, z + y)
 }

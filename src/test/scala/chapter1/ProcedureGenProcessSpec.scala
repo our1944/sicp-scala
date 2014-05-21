@@ -39,4 +39,11 @@ class ProcedureGenProcessSpec extends FlatSpec {
   "fastMulti(2, 5)" should "compute 10" in {
     assert(fastMulti(2, 5) == 10)
   }
+
+  // exercise 1.18
+  "russians" should "be clever" in {
+    assert(russianPeasant(56, 551) == 30856)
+    assert(russianPeasant(551, 56) == 30856)
+    assert(russianPeasant(-551, 56) == -30856)
+  }
 }
