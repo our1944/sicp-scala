@@ -74,5 +74,20 @@ object ProcedureGenProcess {
     else russianPeasantIter((x - 1) / 2, y * 2, z + y)
 
   // exercise 1.19
+  // Tpq
+  // a' = bq + aq + ap
+  // b' = bp + aq
   //
+  // (Tpq)^2
+  // a'' = b'q + a'q + a'p
+  //     = (bpq + aq^2) + (bq^2 + aq^2 + apq) + (bqp + aqp + ap^2)
+  //     = 2bpq + 2aq^2 + bq^2 + 2apq + ap^2
+  //
+  // b'' = b'p + a'q
+  //     = (bp^2 + aqp) + (bq^2 + aq^2 + apq)
+  //
+  //
+  // Tp'q'
+  // a'' = bq' + aq' + a'p
+  // b'' = bp' + aq'
 }
