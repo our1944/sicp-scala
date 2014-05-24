@@ -88,6 +88,7 @@ object ProcedureGenProcess {
   //
   //
   // Tp'q'
-  // a'' = bq' + aq' + a'p
+  // a'' = bq' + aq' + ap'
   // b'' = bp' + aq'
+  //
 }
