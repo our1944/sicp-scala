@@ -76,19 +76,39 @@ object ProcedureGenProcess {
   // exercise 1.19
   // Tpq
   // a' = bq + aq + ap
+  //    = (q + p)a + bq
   // b' = bp + aq
   //
   // (Tpq)^2
   // a'' = b'q + a'q + a'p
   //     = (bpq + aq^2) + (bq^2 + aq^2 + apq) + (bqp + aqp + ap^2)
-  //     = 2bpq + 2aq^2 + bq^2 + 2apq + ap^2
+  //     = (2q^2 + 2pq + p^2)a + (q^2 + 2pq)b
   //
   // b'' = b'p + a'q
   //     = (bp^2 + aqp) + (bq^2 + aq^2 + apq)
+  //     = (p^2 + q^2)b + (q^2 + 2pq)a
   //
   //
   // Tp'q'
   // a'' = bq' + aq' + ap'
+  //     = (p' + q')a + bq'
+  //
   // b'' = bp' + aq'
   //
+  // q' = q^2 + p^2
+  // p' = 2pq + q^2
+
+  def fib(n: Int): Int = {
+    def fibIter(a:Int, b:Int, p: Int, q: Int, count: Int): Int =
+      if (count == 0) b
+      else if (count % 2 == 0)
+        fibIter(a, b, p * p + q * q, q * q + 2 * p * q, count / 2)
+      else fibIter(b * q + a * q + a * p, b * p + a * q, p, q, count - 1)
+    fibIter(1, 0, 0, 1, n)
+  }
+
+  def fibOrig(n: Int): Int =
+    if (n == 0) 0
+    else if (n == 1) 1
+    else fibOrig(n - 1) + fibOrig(n - 2)
 }

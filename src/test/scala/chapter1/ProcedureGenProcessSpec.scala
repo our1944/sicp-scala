@@ -46,4 +46,9 @@ class ProcedureGenProcessSpec extends FlatSpec {
     assert(russianPeasant(551, 56) == 30856)
     assert(russianPeasant(-551, 56) == -30856)
   }
+
+  // exercise 1.18
+  "fib exp" should "compute same resutl as old fib" in {
+    assert(fibOrig(10) == fib(10))
+  }
 }
