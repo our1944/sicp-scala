@@ -1,5 +1,7 @@
 package chapter1
 
+import com.github.nscala_time.time.Imports._
+
 
 object ProcedureGenProcess {
 
@@ -111,4 +113,34 @@ object ProcedureGenProcess {
     if (n == 0) 0
     else if (n == 1) 1
     else fibOrig(n - 1) + fibOrig(n - 2)
+
+
+  def smallestDivisor(n: Int): Int = {
+    def findDivisor(x: Int, test: Int): Int =
+      if (square(test) > n) n
+      else if (n % test == 0) test
+      else findDivisor(x, test + 1)
+
+    findDivisor(n, 2)
+  }
+
+
+  def isPrime(n: Int) = n == smallestDivisor(n)
+
+  def timedPrimeTest(n: Int): Int = {
+    val before = DateTime.now.millis
+    if (isPrime(n)) (DateTime.now.millis) - before
+    else -1
+  }
+
+  def reportTime(elapsed: Int) =
+    println(" *** ")
+    println(elapsed)
+
+  def searchForPrime(bottom: Int): (Int, Int) = {
+    val elapsed = timedPrimeTest(bottom + 1)
+    if (elapsed != -1) (bottom + 1, elapsed)
+    else searchForPrime(bottom + 1)
+  }
+
 }

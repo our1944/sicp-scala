@@ -47,8 +47,17 @@ class ProcedureGenProcessSpec extends FlatSpec {
     assert(russianPeasant(-551, 56) == -30856)
   }
 
-  // exercise 1.18
+  // exercise 1.19
   "fib exp" should "compute same resutl as old fib" in {
     assert(fibOrig(10) == fib(10))
   }
+
+  // exercise 1.21
+  "smallestDivisor" should "compute correct smallest divisor for 199 1999 and 19999" in {
+    assert(smallestDivisor(199) == 199)
+    assert(smallestDivisor(1999) == 1999)
+    assert(smallestDivisor(19999) == 7)
+  }
+
+  // exercise 1.22
 }
