@@ -1,7 +1,7 @@
 package chapter1
 
 import com.github.nscala_time.time.Imports._
-import util.Random.nextLong
+import util.Random._
 
 
 object ProcedureGenProcess {
@@ -135,6 +135,7 @@ object ProcedureGenProcess {
 
   def isPrime(n: Long) = n == smallestDivisor(n)
 
+  // does not work :(
   def rand(l: Long, u: Long): Long = {
     val r = nextLong()
     if (r > l && r < u) r
