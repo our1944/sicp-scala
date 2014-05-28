@@ -60,29 +60,19 @@ class ProcedureGenProcessSpec extends FlatSpec {
   }
 
   // exercise 1.22
+  
   "searchForPrime" should "have some order of growth of O(sqrt(n))" in {
-    val (result, time) = searchForPrime(1000)(isPrime)
-    val (result1, time1) = searchForPrime(10000)(isPrime)
-    val (result2, time2) = searchForPrime(100000)(isPrime)
-    val (result3, time3) = searchForPrime(10000000000L)(isPrime)
-    val (result4, time4) = searchForPrime(1000000000000L)(isPrime)
-    val (result5, time5) = searchForPrime(100000000000000L)(isPrime)
-
-    reportTime(result, time)
-
-    reportTime(result1, time1)
-
-    reportTime(result2, time2)
-
-    reportTime(result3, time3)
-
-    reportTime(result4, time4)
-
-    reportTime(result5, time5)
+  
+    searchForPrime(1001, 1101)
+    searchForPrime(10001,10101)
+    
+    primeTest(1000, now)
+    primeTest(10000, now)
 
   }
 
   // exercise 1.24
+  /*
   "searchForPrime with fastPrime performance" should "depends on the times parameter" in {
     val fastPrime10 = fastPrime(_: Long, 10)
     val (result, time) = searchForPrime(1000)(isPrime)
@@ -91,4 +81,5 @@ class ProcedureGenProcessSpec extends FlatSpec {
     reportTime(result, time)
     reportTime(result1, time1)
   }
+  */
 }
