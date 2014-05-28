@@ -1,12 +1,7 @@
 package chapter1
 
-import com.github.nscala_time.time.Imports._
-import util.Random._
-
-
 object ProcedureGenProcess {
-
-  // exercise 1.10
+	// exercise 1.10
   def ackermann(x: Int, y: Int): Int =
     if (y == 0)
       0
@@ -116,7 +111,8 @@ object ProcedureGenProcess {
     else fibOrig(n - 1) + fibOrig(n - 2)
 
   def squareLong(x: Long) = x * x
-
+  
+/*
   def smallestDivisor(n: Long): Long = {
     def findDivisor(x: Long, test: Long): Long =
       if ((test * test) > n) n
@@ -125,45 +121,73 @@ object ProcedureGenProcess {
 
     findDivisor(n, 2)
   }
+*/
+
+  
+  def smallestDivisor(n: Int): Int = {
+    def findDivisor(n:Int, test:Int):Int = {
+      if(square(test) > n) n
+      else if (n % test == 0) test
+      else findDivisor(n, test + 1)
+    }
+    findDivisor(n, 2)
+  }
 
   def expmod(base: Long, exp: Long, m: Long): Long =
     if (exp == 0) 1
     else if (exp % 2 == 0)
-      squareLong(expmod(base, exp / 2, m)) % m
+      squareLong(expmod(base, exp / 2, m)) % m 
     else squareLong(expmod(base, exp - 1, m)) % m
 
-
+/*
   def isPrime(n: Long) = n == smallestDivisor(n)
-
+*/  
+  def isPrime(n: Int) = smallestDivisor(n) == n
   // does not work :(
+  /*
   def rand(l: Long, u: Long): Long = {
     val r = nextLong()
     if (r > l && r < u) r
     else rand(l, u)
   }
-
+*/
+  
+  /*
   def fematTest(n: Long): Boolean = {
     def tryIt(a: Long): Boolean = a == expmod(a, n, n)
     tryIt(rand(1, n - 1))
   }
-
+*/
+  /*
   def fastPrime(n: Long, times: Int): Boolean =
     if (times == 0) true
     else if (fematTest(n)) fastPrime(n, times - 1)
     else false
-
-  def timedPrimeTest(n: Long)(f: Long => Boolean): Long = {
-    val starttime = DateTime.now
-    if (f(n)) (starttime to DateTime.now).millis
-    else -1
+*/
+  def now = System.currentTimeMillis
+  
+  def primeTest(n: Int, time: Long) = {
+      val isPrime = smallestDivisor(n) //Int
+      reportTime(n, isPrime, now - time)
+  }
+  def timedPrimeTest(n: Int) = {
+      primeTest(n, now)
   }
 
-  def reportTime(result: Long, elapsed: Long) = println(result + " *** " + elapsed)
-
+  def reportTime(n: Int, isPrime: Int, elapsed: Long) = {
+    println(n, isPrime + " *** " + elapsed)
+  }
+/*
   def searchForPrime(bottom: Long)(f: Long => Boolean): (Long, Long) = {
     val elapsed = timedPrimeTest(bottom + 1)(f)
     if (elapsed != -1) (bottom + 1, elapsed)
     else searchForPrime(bottom + 1)(f)
   }
-
+ */
+  def searchForPrime(start: Int, bottom:Int):Unit = {
+    if(start < bottom){
+      timedPrimeTest(start)
+      searchForPrime(start + 1, bottom)
+    }
+  }
 }
