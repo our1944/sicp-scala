@@ -118,10 +118,14 @@ object ProcedureGenProcess {
   def squareLong(x: Long) = x * x
 
   def smallestDivisor(n: Long): Long = {
+    def next(y: Long): Long =
+      if (y == 2) 3
+      else y + 2
+
     def findDivisor(x: Long, test: Long): Long =
       if ((test * test) > n) n
       else if (n % test == 0) test
-      else findDivisor(x, test + 1)
+      else findDivisor(x, next(x))
 
     findDivisor(n, 2)
   }
