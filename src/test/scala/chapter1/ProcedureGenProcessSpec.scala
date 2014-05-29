@@ -89,6 +89,6 @@ class ProcedureGenProcessSpec extends FlatSpec {
     //val (result1, time1) = searchForPrime(100000000000000L)(fastPrime10)
 
     reportTime(result, time)
-    reportTime(result1, time1)
+    //reportTime(result1, time1)
   }
 }

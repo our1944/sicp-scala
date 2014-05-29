@@ -1,6 +1,5 @@
 package chapter1
 
-import com.github.nscala_time.time.Imports._
 import util.Random._
 
 
@@ -117,15 +116,16 @@ object ProcedureGenProcess {
 
   def squareLong(x: Long) = x * x
 
-  def smallestDivisor(n: Long): Long = {
+  def smallestDivisor(n: Long, useNext: Boolean = false): Long = {
     def next(y: Long): Long =
       if (y == 2) 3
       else y + 2
 
     def findDivisor(x: Long, test: Long): Long =
       if ((test * test) > n) n
-      else if (n % test == 0) test
-      else findDivisor(x, next(x))
+      else if (x % test == 0) test
+      else if (!useNext) findDivisor(x, test + 1)
+      else findDivisor(x, next(test))
 
     findDivisor(n, 2)
   }
@@ -140,8 +140,8 @@ object ProcedureGenProcess {
   def isPrime(n: Long) = n == smallestDivisor(n)
 
   // does not work :(
-  def rand(l: Long, u: Long): Long = {
-    val r = nextLong()
+  def rand(l: Long, u: Long): Int = {
+    val r = nextInt()
     if (r > l && r < u) r
     else rand(l, u)
   }
@@ -157,8 +157,8 @@ object ProcedureGenProcess {
     else false
 
   def timedPrimeTest(n: Long)(f: Long => Boolean): Long = {
-    val starttime = DateTime.now
-    if (f(n)) (starttime to DateTime.now).millis
+    val starttime = System.currentTimeMillis
+    if (f(n)) starttime - System.currentTimeMillis
     else -1
   }
 
