@@ -139,21 +139,16 @@ object ProcedureGenProcess {
 
   def isPrime(n: Long) = n == smallestDivisor(n)
 
-  // does not work :(
-  def rand(l: Long, u: Long): Int = {
-    val r = nextInt()
-    if (r > l && r < u) r
-    else rand(l, u)
-  }
+  def rand(l: Long, u: Long): Long = l + (nextDouble() * (u - l)).asInstanceOf[Long]
 
   def fematTest(n: Long): Boolean = {
     def tryIt(a: Long): Boolean = a == expmod(a, n, n)
     tryIt(rand(1, n - 1))
   }
 
-  def fastPrime(n: Long, times: Int): Boolean =
+  def fastPrime(times: Int)(n: Long): Boolean =
     if (times == 0) true
-    else if (fematTest(n)) fastPrime(n, times - 1)
+    else if (fematTest(n)) fastPrime(times - 1)(n)
     else false
 
   def timedPrimeTest(n: Long)(f: Long => Boolean): Long = {

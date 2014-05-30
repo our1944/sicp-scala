@@ -84,11 +84,12 @@ class ProcedureGenProcessSpec extends FlatSpec {
 
   // exercise 1.24
   "searchForPrime with fastPrime performance" should "depends on the times parameter" in {
-    val fastPrime10 = fastPrime(_: Long, 10)
+    val fastPrime10 = fastPrime(10)_
     val (result, time) = searchForPrime(1000)(isPrime)
-    //val (result1, time1) = searchForPrime(100000000000000L)(fastPrime10)
+    val (result1, time1) = searchForPrime(100000000000000L)(fastPrime10)
 
     reportTime(result, time)
     //reportTime(result1, time1)
+    println(rand(1, 100000000000000L))
   }
 }
