@@ -61,12 +61,12 @@ class ProcedureGenProcessSpec extends FlatSpec {
 
   // exercise 1.22
   "searchForPrime" should "have some order of growth of O(sqrt(n))" in {
-    val (result, time) = searchForPrime(1000)(isPrime)
-    val (result1, time1) = searchForPrime(10000)(isPrime)
-    val (result2, time2) = searchForPrime(100000)(isPrime)
-    val (result3, time3) = searchForPrime(10000000000L)(isPrime)
-    val (result4, time4) = searchForPrime(1000000000000L)(isPrime)
-    val (result5, time5) = searchForPrime(100000000000000L)(isPrime)
+    val (result, time) = searchForPrime(1000, 0, 0, Nil, isPrime)
+    val (result1, time1) = searchForPrime(10000, 0, 0, Nil, isPrime)
+    val (result2, time2) = searchForPrime(100000, 0, 0, Nil, isPrime)
+    val (result3, time3) = searchForPrime(10000000000L, 0, 0, Nil, isPrime)
+    val (result4, time4) = searchForPrime(1000000000000L, 0, 0, Nil, isPrime)
+    val (result5, time5) = searchForPrime(100000000000000L, 0, 0, Nil, isPrime)
 
     reportTime(result, time)
 
@@ -83,13 +83,11 @@ class ProcedureGenProcessSpec extends FlatSpec {
   }
 
   // exercise 1.24
-  "searchForPrime with fastPrime performance" should "depends on the times parameter" in {
-    val fastPrime10 = fastPrime(10)_
-    val (result, time) = searchForPrime(1000)(isPrime)
-    val (result1, time1) = searchForPrime(100000000000000L)(fastPrime10)
+  "searchForPrime with fastPrime performance" should "have O(n) = log(n)" in {
+    val (result, time) = searchForPrime(100, 0, 0, Nil, fastPrime)
+    val (result1, time1) = searchForPrime(10000, 0, 0, Nil, fastPrime)
 
     reportTime(result, time)
-    //reportTime(result1, time1)
-    println(rand(1, 100000000000000L))
+    reportTime(result1, time1)
   }
 }

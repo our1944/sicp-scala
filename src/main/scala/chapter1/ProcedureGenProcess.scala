@@ -134,7 +134,7 @@ object ProcedureGenProcess {
     if (exp == 0) 1
     else if (exp % 2 == 0)
       squareLong(expmod(base, exp / 2, m)) % m
-    else squareLong(expmod(base, exp - 1, m)) % m
+    else (base * expmod(base, exp - 1, m)) % m
 
 
   def isPrime(n: Long) = n == smallestDivisor(n)
@@ -146,23 +146,27 @@ object ProcedureGenProcess {
     tryIt(rand(1, n - 1))
   }
 
-  def fastPrime(times: Int)(n: Long): Boolean =
-    if (times == 0) true
-    else if (fematTest(n)) fastPrime(times - 1)(n)
-    else false
-
-  def timedPrimeTest(n: Long)(f: Long => Boolean): Long = {
-    val starttime = System.currentTimeMillis
-    if (f(n)) starttime - System.currentTimeMillis
-    else -1
+  def fastPrime(n: Long): Boolean = {
+    def fastPrimeIter(times: Int): Boolean =
+      if (times == 0) true
+      else if (fematTest(n)) fastPrimeIter(times -1)
+      else false
+    fastPrimeIter(100)
   }
 
-  def reportTime(result: Long, elapsed: Long) = println(result + " *** " + elapsed)
+  def timedPrimeTest(n: Long, f: Long => Boolean): (Boolean, Long) = {
+    val starttime = System.currentTimeMillis
+    if (f(n)) (true, System.currentTimeMillis - starttime)
+    else (false, System.currentTimeMillis - starttime)
+  }
 
-  def searchForPrime(bottom: Long)(f: Long => Boolean): (Long, Long) = {
-    val elapsed = timedPrimeTest(bottom + 1)(f)
-    if (elapsed != -1) (bottom + 1, elapsed)
-    else searchForPrime(bottom + 1)(f)
+  def reportTime(result: List[Long], elapsed: Long) = println(result + " *** " + elapsed)
+
+  def searchForPrime(bottom: Long, count: Int, timeAcc: Long, primeAcc: List[Long], f: Long => Boolean): (List[Long], Long) = {
+    val testResult = timedPrimeTest(bottom + 1, f)
+    if (count > 2) (primeAcc, timeAcc)
+    else if (testResult._1) searchForPrime(bottom + 1, count + 1, timeAcc + testResult._2, primeAcc :+ (bottom + 1), f)
+    else searchForPrime(bottom + 1, count, timeAcc + testResult._2, primeAcc, f)
   }
 
 }
