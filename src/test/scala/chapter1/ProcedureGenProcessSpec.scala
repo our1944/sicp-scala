@@ -86,8 +86,12 @@ class ProcedureGenProcessSpec extends FlatSpec {
   "searchForPrime with fastPrime performance" should "have O(n) = log(n)" in {
     val (result, time) = searchForPrime(100, 0, 0, Nil, fastPrime)
     val (result1, time1) = searchForPrime(10000, 0, 0, Nil, fastPrime)
+    val (result2, time2) = searchForPrime(100000000, 0, 0, Nil, fastPrime)
+    //val (result3, time3) = searchForPrime(10000000000L, 0, 0, Nil, fastPrime)
 
     reportTime(result, time)
     reportTime(result1, time1)
+    reportTime(result2, time2)
+    //reportTime(result3, time3)
   }
 }
