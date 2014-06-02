@@ -170,4 +170,17 @@ object ProcedureGenProcess {
     else searchForPrime(bottom + 1, count, timeAcc + testResult._2, primeAcc, f)
   }
 
+
+  // exercise 1.26
+  // expmod evaluated twice
+
+  // exercise 1.27
+  def foolFematTest(n: Int): Boolean = {
+    def foolFematTestIter(x: Int): Boolean =
+      if (x == n) true
+      else if (expmod(x, n, n) == x) foolFematTestIter(x + 1)
+      else false
+    foolFematTestIter(1)
+  }
+
 }

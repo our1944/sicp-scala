@@ -60,6 +60,7 @@ class ProcedureGenProcessSpec extends FlatSpec {
   }
 
   // exercise 1.22
+  // TODO: figure out a better way to test
   "searchForPrime" should "have some order of growth of O(sqrt(n))" in {
     val (result, time) = searchForPrime(1000, 0, 0, Nil, isPrime)
     val (result1, time1) = searchForPrime(10000, 0, 0, Nil, isPrime)
@@ -83,6 +84,7 @@ class ProcedureGenProcessSpec extends FlatSpec {
   }
 
   // exercise 1.24
+  // TODO: better way to test, figure out the problem of performance
   "searchForPrime with fastPrime performance" should "have O(n) = log(n)" in {
     val (result, time) = searchForPrime(100, 0, 0, Nil, fastPrime)
     val (result1, time1) = searchForPrime(10000, 0, 0, Nil, fastPrime)
@@ -93,5 +95,15 @@ class ProcedureGenProcessSpec extends FlatSpec {
     reportTime(result1, time1)
     reportTime(result2, time2)
     //reportTime(result3, time3)
+  }
+
+  // exercise 1.27
+  "Carmichael numbers" should "fool femattest" in {
+    assert(foolFematTest(561))
+    assert(foolFematTest(1105))
+    assert(foolFematTest(1729))
+    assert(foolFematTest(2465))
+    assert(foolFematTest(2821))
+    assert(foolFematTest(6601))
   }
 }
