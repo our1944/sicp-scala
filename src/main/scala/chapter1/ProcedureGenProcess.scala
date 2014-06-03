@@ -183,4 +183,12 @@ object ProcedureGenProcess {
     foolFematTestIter(1)
   }
 
+  // exercise 1.28
+  def mrExpmod(base: Long, exp: Long, m: Long): Long = {
+    if (exp == 0) 1
+    else if (exp % 2 == 0)
+      squareLong(expmod(base, exp / 2, m)) % m
+    else (base * expmod(base, exp - 1, m)) % m
+  }
+
 }
