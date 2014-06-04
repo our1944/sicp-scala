@@ -106,4 +106,13 @@ class ProcedureGenProcessSpec extends FlatSpec {
     assert(foolFematTest(2821))
     assert(foolFematTest(6601))
   }
+
+  "Carmichael numbers" should "not fool millter rabin test" in {
+    assert(mrTest(561) == false)
+    assert(mrTest(1105) == false)
+    assert(mrTest(1729) == false)
+    assert(mrTest(2465) == false)
+    assert(mrTest(2821) == false)
+    assert(mrTest(6601) == false)
+  }
 }

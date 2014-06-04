@@ -185,10 +185,24 @@ object ProcedureGenProcess {
 
   // exercise 1.28
   def mrExpmod(base: Long, exp: Long, m: Long): Long = {
+    def squaremodWithCheck(x: Long): Long = {
+      def checkNontrivalSqrt1(x: Long, square: Long): Long =
+        if (square == 1 && x != 1 && x != m - 1) 0
+        else square
+      checkNontrivalSqrt1(x, squareLong(x) % m)
+    }
     if (exp == 0) 1
     else if (exp % 2 == 0)
-      squareLong(expmod(base, exp / 2, m)) % m
-    else (base * expmod(base, exp - 1, m)) % m
+      squaremodWithCheck(mrExpmod(base, exp / 2, m))
+    else (base * mrExpmod(base, exp - 1, m)) % m
   }
+
+ def mrTest(n: Long): Boolean = {
+   def tryIt(a: Long): Boolean = {
+     def checkIt(x: Long) = x != 0 && x == 1
+     checkIt(mrExpmod(a, n - 1, n))
+   }
+   tryIt(rand(1, n - 1))
+ }
 
 }
