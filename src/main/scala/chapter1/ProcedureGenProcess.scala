@@ -164,7 +164,7 @@ object ProcedureGenProcess {
 
   def searchForPrime(bottom: Long, count: Int, timeAcc: Long, primeAcc: List[Long], f: Long => Boolean): (List[Long], Long) = {
     val testResult = timedPrimeTest(bottom + 1, f)
-    println("count " + count + " bottom " + bottom)
+    //println("count " + count + " bottom " + bottom)
     if (count > 2) (primeAcc, timeAcc)
     else if (testResult._1) searchForPrime(bottom + 1, count + 1, timeAcc + testResult._2, primeAcc :+ (bottom + 1), f)
     else searchForPrime(bottom + 1, count, timeAcc + testResult._2, primeAcc, f)
